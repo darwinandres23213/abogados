@@ -1176,17 +1176,25 @@ body.is-ready .hero-veil {
   border-top: 1px solid var(--line);
   padding: 3rem 0 2rem;
   background: #050505;
+  text-align: center;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr;
   gap: 2rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.footer-grid > * {
+  width: 100%;
+  max-width: 22rem;
 }
 
 .footer-brand img {
   width: 160px;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
 }
 
 .footer-lema {
@@ -1219,6 +1227,7 @@ body.is-ready .hero-veil {
   padding-top: 1.25rem;
   border-top: 1px solid rgba(198, 161, 91, 0.15);
   font-size: 0.88rem;
+  text-align: center;
 }
 
 /* WhatsApp flotante */
