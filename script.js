@@ -207,8 +207,10 @@
     updateImgParallax();
   }
 
-  /* —— Imágenes con tilt suave al hover —— */
-  if (!reduceMotion) {
+  const isTouchUI = window.matchMedia("(max-width: 960px), (hover: none)").matches;
+
+  /* —— Imágenes con tilt suave al hover (solo desktop) —— */
+  if (!reduceMotion && !isTouchUI) {
     document.querySelectorAll(".identidad-visual, .equipo-photo, .caso, .novedad-media").forEach((box) => {
       box.classList.add("tilt-host");
       box.addEventListener("pointermove", (e) => {
@@ -225,8 +227,8 @@
     });
   }
 
-  /* —— Botones magnéticos —— */
-  if (!reduceMotion) {
+  /* —— Botones magnéticos (solo desktop) —— */
+  if (!reduceMotion && !isTouchUI) {
     document.querySelectorAll(".btn").forEach((btn) => {
       btn.addEventListener("pointermove", (e) => {
         const r = btn.getBoundingClientRect();
