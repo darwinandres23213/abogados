@@ -369,7 +369,7 @@ body.is-ready .hero-img-wrap {
   transform: scale(1.04);
   will-change: transform;
   opacity: 0;
-  filter: grayscale(1) contrast(1.1) brightness(0.94);
+  filter: grayscale(0.35) contrast(1.05) brightness(0.98);
   image-rendering: auto;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -385,12 +385,12 @@ body.is-ready .hero-img {
   0% {
     opacity: 0;
     transform: scale(1.06) translate3d(2%, 0, 0);
-    filter: grayscale(1) contrast(1.1) brightness(0.75);
+    filter: grayscale(0.35) contrast(1.05) brightness(0.85);
   }
   100% {
     opacity: 1;
     transform: scale(1.03) translate3d(0, 0, 0);
-    filter: grayscale(1) contrast(1.1) brightness(0.94);
+    filter: grayscale(0.35) contrast(1.05) brightness(0.98);
   }
 }
 
@@ -402,7 +402,7 @@ body.is-ready .hero-img {
 body.is-scrolling-hero .hero-img {
   animation: none !important;
   opacity: 1;
-  filter: grayscale(1) contrast(1.1) brightness(0.94);
+  filter: grayscale(0.35) contrast(1.05) brightness(0.98);
 }
 
 .hero-img-shine {
@@ -704,16 +704,14 @@ body.is-ready .hero-veil {
 
 .identidad-visual {
   overflow: hidden;
-  min-height: 320px;
   background: var(--bg-elevated);
 }
 
 .identidad-visual img {
   width: 100%;
-  height: 100%;
-  min-height: 320px;
-  object-fit: cover;
-  filter: saturate(0.92) contrast(1.05);
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .tilt-host {
@@ -804,8 +802,8 @@ body.is-ready .hero-veil {
   display: grid;
   grid-template-columns: 1fr minmax(220px, 0.7fr) 1fr;
   gap: 0.75rem;
-  align-items: stretch;
-  min-height: 180px;
+  align-items: center;
+  min-height: 0;
 }
 
 .valor-img {
@@ -815,17 +813,14 @@ body.is-ready .hero-veil {
 
 .valor-img img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 180px;
-  filter: grayscale(0.15) contrast(1.05);
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .valor-row:hover .valor-img img {
   animation: none;
-  filter: grayscale(0) contrast(1.08) brightness(1.05);
-  transform: scale(1.14);
-  transition: transform 0.7s var(--ease-out), filter 0.5s ease;
+  transform: none;
 }
 
 .valor-text {
@@ -864,22 +859,19 @@ body.is-ready .hero-veil {
 
 .equipo-photo {
   overflow: hidden;
-  min-height: 420px;
   background: #000;
 }
 
 .equipo-photo img {
   width: 100%;
-  height: 100%;
-  min-height: 420px;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .equipo-photo:hover img {
   animation: none;
-  transform: scale(1.12);
-  transition: transform 0.8s var(--ease-out);
+  transform: none;
 }
 
 .equipo-role {
@@ -973,42 +965,31 @@ body.is-ready .hero-veil {
 
 .caso {
   position: relative;
-  aspect-ratio: 4 / 5;
-  min-height: 0;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  background: #0c0c0c;
+  border: 1px solid var(--line);
 }
 
-.caso-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(7, 7, 7, 0.1) 0%, rgba(7, 7, 7, 0.55) 45%, rgba(7, 7, 7, 0.92) 100%),
-    var(--caso-img) var(--caso-pos, center 30%) / cover no-repeat;
-  transform: scale(1.02);
-  transition: transform 0.8s var(--ease-out), filter 0.6s ease;
-}
-
-.caso.is-img-on .caso-bg {
-  animation: none;
-}
-
-.caso:hover .caso-bg {
-  transform: scale(1.06);
-  filter: brightness(1.06);
+.caso-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #111;
 }
 
 .caso-content {
   position: relative;
   z-index: 1;
-  padding: 1.5rem;
-  transform: translateY(12px);
-  transition: transform 0.55s var(--ease-out);
+  padding: 1.25rem 1.35rem 1.5rem;
+  margin-top: 0;
+  background: linear-gradient(180deg, rgba(12, 12, 12, 0.96), #0a0a0a);
 }
 
 .caso:hover .caso-content {
-  transform: translateY(0);
+  transform: none;
 }
 
 .caso-content h3 {
@@ -1057,21 +1038,20 @@ body.is-ready .hero-veil {
 
 .novedad-media {
   overflow: hidden;
-  aspect-ratio: 16 / 10;
   margin-bottom: 1rem;
   background: #111;
 }
 
 .novedad-media img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .novedad:hover .novedad-media img {
   animation: none;
-  transform: scale(1.14);
-  transition: transform 0.8s var(--ease-out);
+  transform: none;
 }
 
 /* Contacto */
@@ -1399,54 +1379,29 @@ body.is-ready .hero-veil {
 
 .img-frame > img,
 .img-anim {
-  transform: scale(1.22) translate3d(0, 10%, 0);
-  filter: blur(10px) saturate(0.7);
-  opacity: 0.35;
-  transition:
-    transform 1.25s var(--ease-out),
-    filter 1.1s var(--ease-out),
-    opacity 0.9s var(--ease-out);
-  will-change: transform, filter;
+  opacity: 0.25;
+  transform: none;
+  filter: none;
+  transition: opacity 0.9s var(--ease-out);
 }
 
 .img-frame.is-img-on > img,
 .img-frame.is-img-on .img-anim,
 .is-img-on > .img-anim {
   opacity: 1;
-  filter: blur(0) saturate(1);
-  transform: scale(1.08) translate3d(0, var(--img-y, 0px), 0);
+  transform: none;
+  filter: none;
 }
 
 .img-frame.is-img-on > img.ken,
 .img-frame.is-img-on .ken,
-.is-img-on .ken {
-  animation: ken-burns 16s ease-in-out infinite alternate;
-}
-
+.is-img-on .ken,
 .img-frame.is-img-on > img.ken-alt,
 .img-frame.is-img-on .ken-alt,
-.is-img-on .ken-alt {
-  animation: ken-burns-alt 13s ease-in-out infinite alternate;
-}
-
+.is-img-on .ken-alt,
 .img-frame.is-img-on > img.ken-slow,
 .is-img-on .ken-slow {
-  animation: ken-burns-slow 20s ease-in-out infinite alternate;
-}
-
-@keyframes ken-burns {
-  0% { transform: scale(1.08) translate3d(0, var(--img-y, 0px), 0); }
-  100% { transform: scale(1.22) translate3d(-4%, calc(var(--img-y, 0px) - 2%), 0); }
-}
-
-@keyframes ken-burns-alt {
-  0% { transform: scale(1.1) translate3d(2%, var(--img-y, 0px), 0); }
-  100% { transform: scale(1.24) translate3d(-3%, calc(var(--img-y, 0px) + 3%), 0); }
-}
-
-@keyframes ken-burns-slow {
-  0% { transform: scale(1.06) translate3d(-1%, var(--img-y, 0px), 0); }
-  100% { transform: scale(1.18) translate3d(3%, calc(var(--img-y, 0px) - 3%), 0); }
+  animation: none;
 }
 
 @keyframes img-shine {
@@ -1458,8 +1413,7 @@ body.is-ready .hero-veil {
 .identidad-block:hover .identidad-visual > img,
 .identidad-visual:hover > img {
   animation: none;
-  transform: scale(1.16);
-  transition: transform 0.85s var(--ease-out);
+  transform: none;
 }
 
 .alianzas-list li {
@@ -1544,7 +1498,6 @@ body.is-ready .hero-veil {
 
   .valor-img,
   .identidad-visual,
-  .identidad-logo-wrap,
   .equipo-photo,
   .novedad-media,
   .caso,
@@ -1554,15 +1507,8 @@ body.is-ready .hero-veil {
     max-width: 100%;
     overflow: hidden;
     min-height: 0 !important;
-  }
-
-  .valor-img {
-    aspect-ratio: 16 / 10;
-  }
-
-  .identidad-visual {
-    aspect-ratio: 4 / 3;
-    max-height: 280px;
+    aspect-ratio: auto !important;
+    max-height: none !important;
   }
 
   .identidad-logo-wrap {
@@ -1575,33 +1521,21 @@ body.is-ready .hero-veil {
     place-items: center;
   }
 
-  .equipo-photo {
-    aspect-ratio: 4 / 5;
-    max-height: 400px;
-  }
-
-  .caso {
-    aspect-ratio: 4 / 5;
-    max-height: none;
-  }
-
-  .novedad-media {
-    aspect-ratio: 16 / 10;
-  }
-
   .valor-img img,
   .identidad-visual img,
   .equipo-photo img,
   .novedad-media img,
+  .caso-photo,
   .img-frame > img:not(.identidad-logo) {
-    position: absolute;
-    inset: 0;
+    position: static !important;
+    inset: auto !important;
     width: 100% !important;
-    height: 100% !important;
-    max-width: none;
+    height: auto !important;
+    max-width: 100% !important;
     min-height: 0 !important;
-    object-fit: cover;
-    object-position: center;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block;
   }
 
   .identidad-logo {
@@ -1609,10 +1543,6 @@ body.is-ready .hero-veil {
     width: min(180px, 62%) !important;
     height: auto !important;
     inset: auto !important;
-  }
-
-  .caso-bg {
-    inset: 0 !important;
   }
 
   .casos-track,
@@ -1640,16 +1570,13 @@ body.is-ready .hero-veil {
   .is-img-on .ken-alt,
   .img-frame.is-img-on > img.ken-slow,
   .is-img-on .ken-slow {
-    animation: none;
-    transform: scale(1.02) translate3d(0, 0, 0);
-    max-width: none;
-    width: 100%;
-    height: 100%;
-  }
-
-  .caso.is-img-on .caso-bg,
-  .caso:hover .caso-bg {
-    transform: scale(1.02);
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
   .identidad-block:hover .identidad-visual > img,
@@ -1657,7 +1584,7 @@ body.is-ready .hero-veil {
   .valor-row:hover .valor-img img,
   .equipo-photo:hover img,
   .novedad:hover .novedad-media img {
-    transform: scale(1.06);
+    transform: none;
   }
 
   .hero {
@@ -1758,18 +1685,12 @@ body.is-ready .hero-veil {
   }
 
   .identidad-visual,
-  .equipo-photo {
-    aspect-ratio: 5 / 4;
-  }
-
-  .equipo-photo {
-    aspect-ratio: 3 / 4;
-    max-height: 360px;
-  }
-
-  .caso {
-    aspect-ratio: 4 / 5;
-    max-height: none;
+  .equipo-photo,
+  .valor-img,
+  .caso,
+  .novedad-media {
+    aspect-ratio: auto !important;
+    max-height: none !important;
   }
 
   .valor-text {

@@ -149,15 +149,10 @@
     ),
   ];
 
-  const kenVariants = ["ken", "ken-alt", "ken-slow"];
-  imgFrames.forEach((frame, i) => {
+  imgFrames.forEach((frame) => {
     frame.classList.add("img-frame");
     const img = frame.querySelector("img");
-    if (img && !img.classList.contains("identidad-logo")) {
-      img.classList.add("img-anim", kenVariants[i % kenVariants.length]);
-    } else if (img) {
-      img.classList.add("img-anim");
-    }
+    if (img) img.classList.add("img-anim");
   });
 
   if ("IntersectionObserver" in window) {
@@ -176,36 +171,7 @@
     imgFrames.forEach((frame) => frame.classList.add("is-img-on"));
   }
 
-  /* Parallax suave en imágenes al scrollear */
-  if (!reduceMotion) {
-    let imgTick = false;
-    const updateImgParallax = () => {
-      const vh = window.innerHeight || 1;
-      imgFrames.forEach((frame) => {
-        if (!frame.classList.contains("is-img-on")) return;
-        const rect = frame.getBoundingClientRect();
-        const mid = rect.top + rect.height / 2;
-        const p = (mid - vh / 2) / vh;
-        const y = Math.max(-28, Math.min(28, p * -36));
-        frame.style.setProperty("--img-y", `${y}px`);
-        const bg = frame.querySelector(".caso-bg");
-        if (bg) bg.style.setProperty("--img-y", `${y}px`);
-      });
-      imgTick = false;
-    };
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!imgTick) {
-          requestAnimationFrame(updateImgParallax);
-          imgTick = true;
-        }
-      },
-      { passive: true }
-    );
-    updateImgParallax();
-  }
+  /* Sin parallax en fotos de contenido: evita recortes */
 
   const isTouchUI = window.matchMedia("(max-width: 960px), (hover: none)").matches;
 
