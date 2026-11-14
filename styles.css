@@ -331,15 +331,15 @@ body.is-ready .site-header {
   inset: 0;
   overflow: hidden;
   clip-path: inset(0 100% 0 0);
-  transform: scale(1.12);
-  filter: blur(18px) brightness(0.35) saturate(0.6);
+  transform: scale(1.02);
+  filter: brightness(0.55);
   opacity: 0;
 }
 
 body.is-ready .hero-img-wrap {
   animation:
     hero-reveal-clip 1.45s var(--ease-out) 0.15s forwards,
-    hero-reveal-soft 1.6s var(--ease-out) 0.15s forwards;
+    hero-reveal-soft 1.5s var(--ease-out) 0.15s forwards;
 }
 
 @keyframes hero-reveal-clip {
@@ -351,13 +351,13 @@ body.is-ready .hero-img-wrap {
 @keyframes hero-reveal-soft {
   0% {
     opacity: 0;
-    transform: scale(1.18);
-    filter: blur(18px) brightness(0.3) saturate(0.5);
+    transform: scale(1.04);
+    filter: brightness(0.5);
   }
   100% {
     opacity: 1;
     transform: scale(1);
-    filter: blur(0) brightness(1) saturate(1);
+    filter: brightness(1);
   }
 }
 
@@ -365,41 +365,44 @@ body.is-ready .hero-img-wrap {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 58% 18%;
-  transform: scale(1.15);
+  object-position: 58% 32%;
+  transform: scale(1.04);
   will-change: transform;
   opacity: 0;
+  filter: grayscale(1) contrast(1.1) brightness(0.94);
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 body.is-ready .hero-img {
   animation:
-    hero-img-in 1.8s var(--ease-out) 0.2s forwards,
-    hero-ken 18s ease-in-out 2s infinite alternate;
+    hero-img-in 1.5s var(--ease-out) 0.2s forwards,
+    hero-ken 22s ease-in-out 1.8s infinite alternate;
 }
 
 @keyframes hero-img-in {
   0% {
     opacity: 0;
-    transform: scale(1.28) translate3d(6%, 0, 0);
-    filter: blur(12px);
+    transform: scale(1.06) translate3d(2%, 0, 0);
+    filter: grayscale(1) contrast(1.1) brightness(0.75);
   }
   100% {
     opacity: 1;
-    transform: scale(1.12) translate3d(0, 0, 0);
-    filter: blur(0);
+    transform: scale(1.03) translate3d(0, 0, 0);
+    filter: grayscale(1) contrast(1.1) brightness(0.94);
   }
 }
 
 @keyframes hero-ken {
-  0% { transform: scale(1.12) translate3d(0, 0, 0); }
-  50% { transform: scale(1.2) translate3d(-2.5%, -1.5%, 0); }
-  100% { transform: scale(1.26) translate3d(-5%, 1%, 0); }
+  0% { transform: scale(1.03) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1.5%, -0.8%, 0); }
 }
 
 body.is-scrolling-hero .hero-img {
   animation: none !important;
   opacity: 1;
-  filter: none;
+  filter: grayscale(1) contrast(1.1) brightness(0.94);
 }
 
 .hero-img-shine {
@@ -511,8 +514,8 @@ body.is-ready .hero-media::before {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(7, 7, 7, 0.88) 0%, rgba(7, 7, 7, 0.55) 48%, rgba(7, 7, 7, 0.28) 100%),
-    linear-gradient(180deg, rgba(7, 7, 7, 0.35) 0%, rgba(7, 7, 7, 0.15) 40%, rgba(7, 7, 7, 0.85) 100%);
+    linear-gradient(90deg, rgba(10, 10, 10, 0.82) 0%, rgba(20, 20, 20, 0.45) 50%, rgba(30, 30, 30, 0.22) 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.1) 45%, rgba(10, 10, 10, 0.78) 100%);
   opacity: 0;
   transition: opacity 0.15s linear;
 }
@@ -970,7 +973,8 @@ body.is-ready .hero-veil {
 
 .caso {
   position: relative;
-  min-height: 420px;
+  aspect-ratio: 4 / 5;
+  min-height: 0;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -978,23 +982,21 @@ body.is-ready .hero-veil {
 
 .caso-bg {
   position: absolute;
-  inset: -8%;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(7, 7, 7, 0.15), rgba(7, 7, 7, 0.88)),
-    var(--caso-img) center / cover no-repeat;
-  transform: scale(1.08);
-  will-change: transform;
+    linear-gradient(180deg, rgba(7, 7, 7, 0.1) 0%, rgba(7, 7, 7, 0.55) 45%, rgba(7, 7, 7, 0.92) 100%),
+    var(--caso-img) var(--caso-pos, center 30%) / cover no-repeat;
+  transform: scale(1.02);
+  transition: transform 0.8s var(--ease-out), filter 0.6s ease;
 }
 
 .caso.is-img-on .caso-bg {
-  animation: ken-burns-alt 14s ease-in-out infinite alternate;
+  animation: none;
 }
 
 .caso:hover .caso-bg {
-  animation: none;
-  transform: scale(1.2) translate3d(-2%, -1%, 0);
-  filter: brightness(1.1) saturate(1.08);
-  transition: transform 0.9s var(--ease-out), filter 0.6s ease;
+  transform: scale(1.06);
+  filter: brightness(1.06);
 }
 
 .caso-content {
@@ -1579,8 +1581,8 @@ body.is-ready .hero-veil {
   }
 
   .caso {
-    aspect-ratio: 3 / 4;
-    max-height: 440px;
+    aspect-ratio: 4 / 5;
+    max-height: none;
   }
 
   .novedad-media {
@@ -1637,21 +1639,24 @@ body.is-ready .hero-veil {
   .img-frame.is-img-on .ken-alt,
   .is-img-on .ken-alt,
   .img-frame.is-img-on > img.ken-slow,
-  .is-img-on .ken-slow,
-  .caso.is-img-on .caso-bg {
+  .is-img-on .ken-slow {
     animation: none;
-    transform: scale(1.04) translate3d(0, 0, 0);
+    transform: scale(1.02) translate3d(0, 0, 0);
     max-width: none;
     width: 100%;
     height: 100%;
+  }
+
+  .caso.is-img-on .caso-bg,
+  .caso:hover .caso-bg {
+    transform: scale(1.02);
   }
 
   .identidad-block:hover .identidad-visual > img,
   .identidad-visual:hover > img,
   .valor-row:hover .valor-img img,
   .equipo-photo:hover img,
-  .novedad:hover .novedad-media img,
-  .caso:hover .caso-bg {
+  .novedad:hover .novedad-media img {
     transform: scale(1.06);
   }
 
@@ -1669,18 +1674,18 @@ body.is-ready .hero-veil {
   }
 
   .hero-img {
-    object-position: 55% 12%;
+    object-position: 55% 28%;
   }
 
   body.is-ready .hero-img {
     animation:
       hero-img-in 1.4s var(--ease-out) 0.15s forwards,
-      hero-ken-mobile 22s ease-in-out 1.6s infinite alternate;
+      hero-ken-mobile 24s ease-in-out 1.6s infinite alternate;
   }
 
   @keyframes hero-ken-mobile {
-    0% { transform: scale(1.08) translate3d(0, 0, 0); }
-    100% { transform: scale(1.14) translate3d(-2%, 0, 0); }
+    0% { transform: scale(1.03) translate3d(0, 0, 0); }
+    100% { transform: scale(1.07) translate3d(-1%, 0, 0); }
   }
 
   .hero-content {
@@ -1764,7 +1769,7 @@ body.is-ready .hero-veil {
 
   .caso {
     aspect-ratio: 4 / 5;
-    max-height: 400px;
+    max-height: none;
   }
 
   .valor-text {
